@@ -1,0 +1,122 @@
+bean 생성방법
+
+1. InitializingBean 인터페이스 상속받는다
+- 객체를 사용하여 property를 초기화
+- 컨테이너 관련 설정을 완료한 뒤 호출
+- 반드시 콜백 함수 afterPropertiesSet() 사용
+
+public clsss Student implements InitializingBean {
+
+	@override
+	public void afterPropertiesSet() throws Exception{
+		//프로퍼티 초기화
+		//ctx.refresh() 메소드 실행 시, bean 초기화 과정에서 호출
+	}
+}
+
+2. PostConstruct 어노테이션 사용
+- 객체의 초기화
+- 객체가 생성된 후, 별도의 작업을 하고싶은 메소드 위에 선언
+
+	@PostConstruct
+	public void start(){
+
+	}
+
+3. Bean태그에 init-method 속성 사용
+
+<Bean id="student" class="ex01.Student" init-method="init" />
+
+bean 종료방법
+
+1. DisposableBean 인터페이스를 상속받는다
+- bean 객체를 이용하여 컨테이너에서 제공하기 전에 호출하며,
+   bean 객체가 자원을 반납할 수 있도록 한다.
+- 반드시 콜백 함수 Destroy() 사용
+
+public class Student implements DisposableBean {
+
+	public void destroy() throws Exception{
+		//bean 객체 소멸
+		//ctx.close() 메소드 실행 시 호출
+	}
+}
+
+2. PreDestroy 어노테이션 사용
+- 마지막 소멸단계
+- 스프링 컨테이너에서 객체를 제거하기 전에 해야할 작업이 있다면 해당 메소드 위에 선언
+
+	@PreDestroy
+	public void stop(){
+
+	}	
+
+3. Bean태그에 destroy-method 속성 사용
+
+<Bean id="student" class="ex01.Student" destroy-method="destroy1" />
+
+실행 순서 : @PostConstruct > afterPropertiesSet() > init-method > 
+		객체 수행 > @PreDestroy > destroy() > destroy_method
+
+-----------------------------------------------------------------------------------------------------
+maven 과 pom.xml
+
+maven이란 ??
+- 자바 프로젝트의 빌드(build)를 자동화해주는 빌드 툴(build tool)이다.
+
+pom.xml이란 ??
+- maven 프로젝트 내의 빌드 옵션을 설정해주는 부분(환경 설정 파일)
+- <groupId> : 프로젝트를 생성한 조직 또는 그룹명 ※대부분 url의 역순으로 작성
+- <artifactId> : 프로젝트에서 생성되는 기본 아티펙트의 고유 이름
+
+-----------------------------------------------------------------------------------------------------
+컨테이너에 대한 설명
+
+컨테이너
+- 객체를 생성하고 조립하는 역할
+- 자주 사용하는 객체들은 미리 메모리에 올려두고 객체를 사용 요청하면 빌려주고,
+소멸시키지않고 재활요하는 것이 IoC의 개념으로써 객체의 Life Cycle을 관리
+
+-----------------------------------------------------------------------------------------------------
+Spring Bean Scope
+- 기본적으로 모든 Bean은 생성과 동시에 Scope를 가지고있으며 Singleton으로 생성하여 관리
+
+singleton
+- 하나의 Bean 정의에 대해서 Spring IoC Container내에 단 하나의 객체만 존재
+※ 객체가 한 개만 생성되기 때문에 호출(getBean())할 때마다 동일한 객체를 참조한다
+
+prototype
+- Bean 모든 요청에서 매번 새로운 객체를 생성
+- Bean 객체마다 고유 값이 필요한 경우에 사용한다
+※ Bean 은 의존성 관계의 bean이 주입될 때, 새로운 객체가 생성되어 주입된다.
+
+-----------------------------------------------------------------------------------------------------
+GenericXmlApplicationContext 사용하여 Bean 객체 생성
+
+1번 :	//Bean메타 정보를 컨테이너 생성 시점에 제공해서, Bean객체 생성
+	GenericXmlApplicationContext ctx = new
+		GenericXmlApplicationContext("classpath:xml명");
+	
+2번 : 	//컨테이너 생성
+	GenericXmlApplictaionContext ctx = new
+		GenericXmlApplicationContext();
+	
+	//메타 정보 제공
+	ctx.load("classpath:xml명");
+
+	//bean객체 생성(읽어온 메타정보로 bean객체 재생성)
+	ctx.refresh();
+
+	//컨테이너 사용
+	Student student = ctx.getBean("student", Student.class);
+
+	//컨테이너 종료
+	ctx.close();
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
