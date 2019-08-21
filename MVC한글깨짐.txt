@@ -1,7 +1,7 @@
 Web.xml
--╟╒ ╬жгц╦╝диюл╪гюг х╞╟Фю╩ ╪Ёа╓го╢б ©╙гр
+-Й╟│ Л∙═М■▄К╕╛Л╪─Л²╢Л┘≤Л²≤ М≥≤Й╡╫Л²└ Л└╓Л═∙М∙≤К┼■ Л≈╜М∙═
 
-	<!-- UTF-8юндз╣Ы -->
+	<!-- UTF-8Л²╦Л╫■К■╘ -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
@@ -23,3 +23,5 @@ Web.xml
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
