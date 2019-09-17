@@ -14,13 +14,14 @@ public class MyController {
 		return "user/form";
 	}
 
-	/*
-	 * @RequestMapping("userInfo") public String userInfo(UserInfomation
-	 * userInfomation) {
+	/* 일반적인 방법
+	 * @RequestMapping("userInfo") public String userInfo(UserInfomationuserInfomation) {
 	 * 
-	 * return "user/userInfo"; }
-	 * 
+	 * return "user/userInfo"; 
+	 * }
 	 */
+	
+	//ModelAttribute를 사용한 방법
 	@RequestMapping("userInfo")
 	public String userInfo(@ModelAttribute("userInfo") UserInfomation userInfomation) {
 		
