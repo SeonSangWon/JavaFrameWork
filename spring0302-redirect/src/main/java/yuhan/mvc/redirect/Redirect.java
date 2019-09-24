@@ -29,6 +29,7 @@ public class Redirect {
 	}
 	
 	//redirect:/memberFail
+	//redirect:/ 사용 할 경우 /을 따라 home.jsp를 호출 
 	@RequestMapping("/memberFail")
 	public String memberFail() {
 			
