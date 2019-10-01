@@ -1,6 +1,6 @@
 bean 생성방법
 
-1. InitializingBean 인터페이스 상속받는다
+1. InitializingBean 인터페이스 상속받는다 
 - 객체를 사용하여 property를 초기화
 - 컨테이너 관련 설정을 완료한 뒤 호출
 - 반드시 콜백 함수 afterPropertiesSet() 사용
