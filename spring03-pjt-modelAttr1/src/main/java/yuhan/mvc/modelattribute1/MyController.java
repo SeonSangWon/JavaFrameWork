@@ -15,7 +15,8 @@ public class MyController {
 	}
 
 	/* 일반적인 방법
-	 * @RequestMapping("userInfo") public String userInfo(UserInfomationuserInfomation) {
+	 * @RequestMapping("userInfo") 
+	 * public String userInfo(UserInfomationuserInfomation) {
 	 * 
 	 * return "user/userInfo"; 
 	 * }
