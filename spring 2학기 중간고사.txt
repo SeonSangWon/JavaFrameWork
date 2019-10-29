@@ -100,7 +100,7 @@ Model
 - @RequestMapping이 적용된 메서드의 파라미터 리턴 타입으로 ModelAndView, Model, ModelMap, Map, 
    커멘드 객체, @ModelAttribute등을 이용해서 파라미터 값을 JSP에 전달
 - model.addAttribute("번수 이름", "변수에 넣을 데이터 값");
-- model.AddAllAttribute(Map<String, ?> attributes);
+- model.AddAllAttributes(Map<String, ?> attributes);
 ※Map에 포함된 <키, 값>에 대해 키를 모델 이름으로 사용해서 값을 모델로 추가
 
 ModelAndView
