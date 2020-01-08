@@ -2,6 +2,7 @@ Web.xml
 -각 애플리케이션의 환경을 설정하는 역할
 
 	<!-- UTF-8인코딩 -->
+	<!-- web.xml-->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
