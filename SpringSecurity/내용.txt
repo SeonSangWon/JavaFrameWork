@@ -14,7 +14,7 @@ Spring Security 의 구조
  
 * Spring Security 는 Session-Cookie 방식으로 인증한다.
  1. 유저가 로그인을 시도 (HTTP-Request)
- 2. AuthenticationFilter 에서부터 위롸 같이 DB에 접속
+ 2. AuthenticationFilter 에서부터 위와 같이 DB에 접속
  3. Database 에 저장된 데이터라면 User Details 로 꺼내서 사용자의 Session 생성
  4. Spring Security 의 인메모리 세션저장소인 SecurityContextHolder 에 저장
  5. 유저에게 Session ID 와 함께 응답을 내려줌
