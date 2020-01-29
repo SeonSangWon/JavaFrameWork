@@ -1,0 +1,31 @@
+  <!-- Properties -->
+  <security.version>4.2.7.RELEASE</security.version>
+  
+  <!-- Security -->
+  <dependency>
+    <groupId>org.springframework.security</groupId> 
+    <artifactId>spring-security-core</artifactId>
+    <version>${security.version}</version> 
+  </dependency> 
+  <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-web</artifactId> 
+    <version>${security.version}</version> 
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+    <version>${security.version}</version> 
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>${security.version}</version>
+  </dependency>
+  <dependency> 
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-test</artifactId>
+    <version>${security.version}</version>
+  </dependency>
+
+출처: https://sjh836.tistory.com/165 [빨간색코딩]
