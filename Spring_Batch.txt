@@ -1,0 +1,26 @@
+2020.01.31
+Spring Batch
+ - 대용량 배치에 맞는 읽기방식과 Transaction 처리를 간단히 구현할 수 있다.
+
+Spring Batch 기능
+ - Job Repository 를 통한 배치 모니터링
+ - 배치에 적합한 트랜잭션 처리를 위해 주기적인 Commit 방식 지원
+ - 배치작업의 재시도, 재시작, 건너뛰기 등의 정책을 설정으로 적용할 수 있다.
+ - Commit 개수, Rollback 개수, 재시도 횟수 등 배치실행 통계 정보를 제공한다.
+ - 다양한 실행 방법 지원 - Quartz, CommandLine, JMX Console, OSGi, 동기/비동기-병렬 실행 ...
+ 
+Spring Batch 구조
+ - Run Tier
+   - Application 의 Scheduling, 실행을 담당한다.
+   - Spring Batch 는 따로 Scheduling 의 기능은 제공하지 않는다.
+   - Quartz 또는 Cron 을 이용하도록 권고하고 있다.
+ 
+ - Job Tier
+   - 전체적인 Job 의 수행을 책임진다.
+   - Job 내의 각 STEP 들을 정책에 따라 순차적으로 수행한다.
+   
+ - Application Tier
+   - Job 을 수행하는데 필요한 Component
+ 
+ - Data Tier
+   - Database, File 등 물리적 데이터 소스
