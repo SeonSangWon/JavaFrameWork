@@ -24,3 +24,21 @@ Spring Batch 구조
  
  - Data Tier
    - Database, File 등 물리적 데이터 소스
+
+
+-----------------------------------------------------------------------------------------
+2020.02.04
+Quartz
+ - Quartz Scheduler 는 거의 모든 Java 응용 프로그램에 통합할 수 있는 풍부한 기능의 오픈 소스 작업 스케쥴 라이브러리이다.
+ - Clustering 기능 :
+   - Quartz 는 Database 기반으로 Scheduler Key 와 Trigger Key 를 이용해 Schedule 을 Clsutering 한다.
+   - 즉 Database 를 기반으로 모든 Schedule 에 대한 제어가 가능해진다.
+   - Quartz 는 Scheduler, Trigger, JobDetail 등의 구조를 통해 Scheduling 에 최적화된 구조를 제공한다.
+   
+Scheduler : 스케줄러와 상호 작용하기 위한 주요 API
+Trigger : 주어진 작업이 실행될 일정을 정의하는 구성 요소
+JobDetail : 작업의 인스턴스를 정의하는 데 사용
+
+
+Spring Batch + Quartz
+ - Quartz는 Scheduling 에 최적화 되어있을 뿐, Batch 성 Job 에 최적화 되어있지는 않다.
