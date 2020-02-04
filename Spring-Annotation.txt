@@ -1,0 +1,40 @@
+2020.02.04
+Servlet 과 관련된 파라미터 타입
+ - HttpServletRequest / HttpServletResponse (상위 타입인 ServletRequest / ServletResponse 를 사용해도 된다.)
+ - WebRequest : Spring 에서 제공해주는 WebRequest 는 HttpServletRequest 의 요청정보를 거의 대부분 그대로 갖고 있는
+                API로 Servlet API 의 종속적이지 않은 타입이다.
+ - MultipartRequest : 파일 업로드 시, 사용할 수 있는 타입니다. (하위 타입인 MultipartHttpServletRequest 를 사용해도 된다.)
+ 
+어노테이션
+ - PathVariable : 파라미터를 URL 경로에 포함시키는 방법
+   @GetMapping("/board/{bid}")
+   public String board(@PathVariable int bid) {
+
+      return "redirect:boardView";
+   }
+   
+ - RequestParam : 요청 파라미터를 넣어주는 어노테이션
+   public String board(@RequestParam int bid) {
+   
+      return "redirect:boardView";
+   }
+   ※파라미터가 여러 개일 경우
+   public String board(@RequestParam Map<String, String> parameters) {
+   
+      return "redirect:boardView";
+   }
+   
+ - ModelAttribute : 메서드/파라미터 둘 다 작성 가능, @RequestParam 은 파라미터와 1:1로 받는 방면,
+                    @ModelAttribute 는 도메인 모델이나 혹은 DTO 와 같은 모델을 받는 타입
+   public String boardInsert(@ModelAttribute BoardDTO boardDTO) {
+   
+      return "/boardboardList";
+   }
+  
+- RequestResponse : HTTP 본문자체를 읽는 부분을 Model 로 변환시켜준다.
+   puble String AJAX(@ResponseBody BoardDTO boardDTO) {
+   
+      return "success":
+   }
+  
+  
