@@ -1,0 +1,38 @@
+2020.02.06
+일반적인 웹 프로젝트 구성에서는 Controller 레벨에서 응답을 받고 비지니스 로직을 처리 후에 다시 View 레벨로 넘어가는게 통상적인
+흐름이다. 이 부분에서 사용되는 파라미터 관련 부분 정리.
+
+HttpServletRequest
+ - @RequestMapping("/")
+   public String home(HttpServletRequest request) {
+   
+     String id = request.getParameter("id");
+     return "home";
+   }
+
+@RequestParam
+ - name, value(Alias for name) / String / 파라미터 이름
+ - required / boolean / 해당 파라미터가 반드시 필수인지 여부, 기본값은 False
+ - defalutValue / String / 해당 파라미터의 기본값
+   @RequestMapping("/")
+   public String home(@RequestParam(value="id", defaultValue="admin") {
+   
+     return "home";
+   }
+ 
+ 
+※required 값을 Ture 로 해놓고 해당 파라미터를 사용하지 않고 요청을 보내게 되면 HTTP 400 에러가 발생하니 주의하고 사용한다.
+   @RequestMapping("/")
+   public String home(String id) }
+   
+     return "home";
+   }
+위와 같은 방법으로도 값을 넘겨받을 수 있지만 이렇게 바로 받을 경우는 필수 파라미터값이 false로 설정되고 변수와 동일한 파라미터만
+받을 수 있게 되며 기본값 설정을 할 수 없다. 방법의 차이일뿐 상황에 따라 맞춰 사용하는 것이 좋다.
+
+ -@RequestBody
+  - RequestBody 어노테이션을 사용할 경우 반드시 POST 형식으로 응답을 받는 구조여야만 한다.
+    이를테면 JSON / XML 과 같은 데이터를 적절한 MessageConverter 로 읽을때 사용하거나,
+    POJO 형태의 데이터 전체로 받을 경우에 사용된다. 단, 해당 어노테이션을 사용하여 파라미터를 받을 경우 별도의
+    추가 설정(POJO 의 GET/SET 이나 JSON/XML 등의 MessageConverter 등)을 해줘야 적절하게 데이터를 받을 수 있다.
+    
