@@ -109,4 +109,8 @@ pom.xml
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
+
+root-context.xml
+<aop:aspectj-autoproxy />  //프록시  설정
+
 출처: https://engkimbs.tistory.com/746 [새로비]
