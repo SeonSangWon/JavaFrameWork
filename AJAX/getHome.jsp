@@ -15,14 +15,10 @@
           url : "<c:url value='/searchGet.do' />",
           data: sendData,
           async: true,
-          success : function(data, status, xhr) {
+          success : function(data) {
+              //Controller에서 전송한 List
               console.log(data);
-              alert('AJAX Success!!!')
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-              alert(jqXHR.responseText);
           }
       });
   }
-
 </script>
