@@ -4,12 +4,14 @@
  * @return
  * @throws Exception
  */
+  @ResponseBody
   @RequestMapping(value = "/searchGet.do", method = RequestMethod.GET)
-  public @ResponseBody Map<String, Object> searchGet(ChagyebuVO vo) throws Exception {
-  
-    //searchGet(ChagyebuVO vo) 에서 ChagyebuVO 객체에 자동으로 맵핑
+  public Object searchGet(ChagyebuVO vo) throws Exception {
     //Debug    
     LOGGER.info(vo.toString());
+    
+    Map<String, Object> object = new HashMap<String, Object>();
+    object.put("list", chagyebuService.selectChagyebuList(vo));
 
-    return chagyebuService.selectChagyebuList(vo);
+    return object;
   }
