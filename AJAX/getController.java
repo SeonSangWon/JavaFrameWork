@@ -15,3 +15,20 @@
 
     return object;
   }
+
+  @ResponseBody
+  @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+  public Object loginAjax(MemberDTO memberDTO) throws Exception {
+    //Debug    
+    LOGGER.info(vo.toString());
+    
+    Map<String, Object> object = new HashMap<String, Object>();
+    int result = 0;
+    
+    if(result > 0)
+      object.put("responseCode", "success");
+    else
+      object.put("responseCode", "error");
+
+    return object;
+  }
