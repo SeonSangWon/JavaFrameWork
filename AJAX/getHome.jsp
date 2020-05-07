@@ -22,3 +22,26 @@
       });
   }
 </script>
+
+<script>
+
+  function searchGet() {
+
+      var sendData = $('#SearchForm').serialize();
+
+      $.ajax({
+          type: "POST",
+          url : "login.do",
+          data: sendData,
+          async: true,
+          success : function(data) {
+              if(data.responseCode == 'success')
+                alert("로그인 성공");
+              else if(data.responseCode == 'fail')
+                alert("아이디 또는 비밀번호가 틀렸습니다.");
+              else
+                alert("Error!! 다시 시도해주세요.");
+          }
+      });
+  }
+</script>
