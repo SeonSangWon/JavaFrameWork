@@ -25,10 +25,18 @@
     Map<String, Object> object = new HashMap<String, Object>();
     int result = 0;
     
-    if(result > 0)
-      object.put("responseCode", "success");
-    else
+    result = chagyebuService.login(memberDTO);
+    try{
+      
+      if(result > 0)
+          object.put("responseCode", "success");
+      else
+          object.put("responseCode", "fail");
+      
+    }catch(Exception e){
+      LOGGER.error("### ERROR ###"); 
       object.put("responseCode", "error");
+    }
 
     return object;
   }
