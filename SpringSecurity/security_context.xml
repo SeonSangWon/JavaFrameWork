@@ -4,7 +4,13 @@
     <intercept-url pattern="/home.do" access="permitAll" />
     <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
     <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" />
-        
+    
+    <!-- login-page : 로그인폼 Page -->
+    <!-- login-processing-url : 로그인 로직을 처리할 URL(Form Action URL) -->
+    <!-- default-target-url : 로그인 성공 시, 이동할 URL -->
+    <!-- authentication-failure-url : 로그인 실패 시, 이동할 URL -->
+    <!-- logout-url : 로그아웃 로직을 처리할 URL -->
+    <!-- logout-success-url : 로그아웃 후, 이동할 URL -->
     <form-login login-page="/login/loginForm.do"
         default-target-url="/home.do"
         authentication-failure-url="/login/loginForm.do?error"
