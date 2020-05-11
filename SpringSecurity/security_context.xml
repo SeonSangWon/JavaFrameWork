@@ -1,0 +1,43 @@
+<!-- 검사 URL -->
+<http use-expressions="true">
+    <intercept-url pattern="/login/loginForm.do" access="permitAll" />
+    <intercept-url pattern="/home.do" access="permitAll" />
+    <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+    <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" />
+        
+    <form-login login-page="/login/loginForm.do"
+        default-target-url="/home.do"
+        authentication-failure-url="/login/loginForm.do?error"
+        username-parameter="id"
+        password-parameter="password" />
+        <logout
+            logout-url="/logout"
+            logout-success-url="/home.do"
+        />
+                
+    <access-denied-handler error-page="/login/accessDenied.do" />
+</http>
+
+
+<!-- 회원 정보와 권한 정보를 데이터베이스에서 가져오도록 설정하는 부분 -->
+
+<!-- 인증 정보를 가져오는 기능을 하는 인터페이스가 -->
+<!-- org.springframework.security.core.userdetails.UserDetailsService 이다. -->
+<!-- 데이터베이스에서 정보를 가져오도록 이 인터페이스를 구현해둔 클래스가 -->
+<!-- org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl 이다. -->
+<!-- userDetailsService 의 빈은 <jdbc-user-service> 요소로 사용된다 -->
+
+<!-- role-prefix : "ROLE_" 와 같은 롤 앞에 붙는 prefix 를 지정 / 권한 체크시 여기에 지정된 값을 붙여서 확인 -->
+<!-- 데이터베이스에 ROLE_USER 형식으로 데이터를 넣어 둿으므로 여기서는 값 X -->
+<!-- users-by-sername-query="" : 아이디로 사용자 정보를 가져오는 쿼리 -->
+<!-- authorities-by-username-query="" : authorities 테이블로부터 권한정보를 가져오는 쿼리 -->
+<!-- provider --> 
+<authentication-manager> 
+    <authentication-provider> 
+        <jdbc-user-service data-source-ref="dataSource" 
+        role-prefix="" 
+        users-by-username-query="select username, password, enabled from users where username = ?" 
+        authorities-by-username-query="select username, authority from authorities where username = ?" 
+        /> 
+    </authentication-provider> 
+</authentication-manager>
