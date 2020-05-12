@@ -8,21 +8,32 @@
     <!-- login-page : 로그인폼 Page -->
     <!-- login-processing-url : 로그인 로직을 처리할 URL(Form Action URL) -->
     <!-- default-target-url : 로그인 성공 시, 이동할 URL -->
+    <!-- authentication-success-handler-ref : 로그인 성공 시, 처리할 로직이 있는 Bean / default-target-url 필요x -->
     <!-- authentication-failure-url : 로그인 실패 시, 이동할 URL -->
     <!-- logout-url : 로그아웃 로직을 처리할 URL -->
     <!-- logout-success-url : 로그아웃 후, 이동할 URL -->
-    <form-login login-page="/login/loginForm.do"
-        default-target-url="/home.do"
+    <form-login 
+        login-page="/login/loginForm.do"
+        login-processing-url="/login/action"
+        authentication-success-handler-ref="authenticationSuccessHandler"
         authentication-failure-url="/login/loginForm.do?error"
         username-parameter="id"
-        password-parameter="password" />
-        <logout
-            logout-url="/logout"
-            logout-success-url="/home.do"
-        />
+        password-parameter="password" 
+      />
+      <logout
+        logout-url="/logout"
+        ogout-success-url="/home.do"
+      />
                 
     <access-denied-handler error-page="/login/accessDenied.do" />
 </http>
+
+<!-- 로그인 성공 후, 부가 작업 -->
+<bean id="loginSuccessHandler" class="tody.common.handler.LoginSuccessHandler">
+    <property name="name" value="sangwon"/>
+    <property name="defaultUrl" value="/"/>
+</bean>
+
 
 
 <!-- 회원 정보와 권한 정보를 데이터베이스에서 가져오도록 설정하는 부분 -->
