@@ -7,6 +7,8 @@
 
 <script>
   //Spring Security
+  //2020.05.22 Security 를 통한 Login AJAX 는 안됌
+  //권한을 확인하며 수행하는 Security 를 통한 AJAX 방식에는 header 를 추가해줄 것.!
   
   var csrfParameter = $('meta[name="_csrf_parameter"]').attr('content');
   var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
