@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<!-- 공통 기능의 클래스를 빈으로 등록 -->
+	<bean id="logAop" class="yuhan.maven.aop1.LogAop" />
+	
+	<!-- 중요~!! -->
+	<aop:config>
+	<aop:aspect id="logger" ref="logAop">
+	
+	<!-- 어느지점에서 aop를 사용할 것인가?에 대한 내용을 정의 -->
+	<!-- within(패키지경로.Worker) 일경우 Worker Class만 해당 -->
+	<aop:pointcut id="publicM" expression="within(yuhan.maven.aop1.*)" />
+	<aop:around pointcut-ref="publicM" method="loggerAop" />
+	</aop:aspect>
+	</aop:config>
+	
+	<bean id="student" class="yuhan.maven.aop1.Student">
+		<property name="name" value="선상원" />
+		<property name="age" value="24" />
+		<property name="gradeNum" value="3" />
+		<property name="classNum" value="2" />
+	</bean>
+	
+	<bean id="worker" class="yuhan.maven.aop1.Worker">
+		<property name="name" value="선상원" />
+		<property name="age" value="24" />
+		<property name="job" value="학생" />
+	</bean>
+
+</beans>
