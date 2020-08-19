@@ -78,3 +78,66 @@ dependencies {
 ```
 
 
+## Lombok 적용
+
+> 주로 사용하는 어노테이션
+>   > @Getter/@Setter
+>   > @ToString
+>   > @EqualsAndHashCode
+>   > @NoArgsConstructor, @RequiredArgsConstructor and @AllArgsConstructor
+>   > @Data
+>   > @Value
+>   > @Builder
+
+
+### 접근자/설정자 자동 생성
+
+관련 어노테이션: <span style="color:blue">@Getter/@Setter </span>   
+Lombok에서 가장 많이 사용되는 어노테이션이다.
+
+
+필드 레벨이 아닌 클래스 레벨에 @Getter 또는 @Setter를 선언해줄 경우, 모든 필드에 접근자와 설정자가 자동으로 생성해준다.   
+
+```
+package com.skcc.dtwiki.springsecuritysample.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "members")
+public class Member {
+	private String name;
+}
+```
+
+### 생성자 자동 생성
+
+관련 어노테이션: <span style="color:blue">@NoArgsConstructor/ @AllArgsConstructor /@RequiredArgsConstructor </span>   
+Lombok을 사용하면 생성자도 자동으로 생성할 수 있다.   
+
+<div>
+	<table>
+		<tr>
+			<td align="center" width="100">Anotation</td><td align="center" width="130">설명</td>
+		</tr>
+		<tr>
+			<td>@NoArgsConstructor</td>
+			<td>파라미터가 없는 기본 생성자를 생성한다.</td>
+		</tr>
+		<tr>
+			<td>@AllArgsConstructor</td>
+			<td>모든 필드 값을 파라미터로 받는 생성자를 만든다.</td>
+		</tr>
+		<tr>
+			<td>@RequiredArgsConstructor</td>
+			<td>final이나 @NonNull인 필드 값만 파라미터로 받는 생성자를 만든다.</td>
+		</tr>
+	</table>
+</div>
+
